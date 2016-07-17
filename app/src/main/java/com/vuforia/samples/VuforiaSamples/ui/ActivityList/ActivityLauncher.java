@@ -26,7 +26,7 @@ import com.vuforia.samples.VuforiaSamples.R;
 public class ActivityLauncher extends ListActivity
 {
     
-    private String mActivities[] = { "AR识图","AR电话","AR购物","AR游戏","AR识字","AR餐饮","AR交流","AR多目标与云存储","AR测试"};
+    private String mActivities[] = { "AR识图","游戏王","AR购物","AR游戏","AR导航","AR餐饮","AR交流","AR云识","AR测试"};
 
     @Override
     public void onCreate(Bundle savedInstanceState)
