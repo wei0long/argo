@@ -25,7 +25,7 @@ import com.vuforia.samples.VuforiaSamples.R;
 public class ActivitySplashScreen extends Activity
 {
 //    启动页延迟显示时间
-    private static long SPLASH_MILLIS = 950;
+    private static long SPLASH_MILLIS = 1950;
     
     
     @Override
@@ -36,7 +36,7 @@ public class ActivitySplashScreen extends Activity
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
             WindowManager.LayoutParams.FLAG_FULLSCREEN);
-//        inflate就相当于将一个xml中定义的布局找出来
+//        inflate就相当于将一个xml中定义的布局找出来，对于一个没有被载入或者想要动态载入的界面，都需要使用LayoutInflater.inflate()来载入；
         LayoutInflater inflater = LayoutInflater.from(this);
         RelativeLayout layout = (RelativeLayout) inflater.inflate(
             R.layout.splash_screen, null, false);

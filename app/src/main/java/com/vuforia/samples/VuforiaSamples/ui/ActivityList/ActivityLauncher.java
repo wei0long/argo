@@ -52,7 +52,7 @@ public class ActivityLauncher extends ListActivity
         Intent intent = new Intent(this, AboutScreen.class);
         intent.putExtra("ABOUT_TEXT_TITLE", mActivities[position]);
         
-        switch (position)//点击时间分发
+        switch (position)//点击事件分发
         {
             case 0:
                 intent.putExtra("ACTIVITY_TO_LAUNCH",
@@ -75,10 +75,11 @@ public class ActivityLauncher extends ListActivity
                 intent.putExtra("ABOUT_TEXT",
                     "UserDefinedTargets/UD_about.html");
                 break;
+//            AR导航
             case 4:
                 intent.putExtra("ACTIVITY_TO_LAUNCH",
-                    "app.ObjectRecognition.ObjectTargets");
-                intent.putExtra("ABOUT_TEXT", "ObjectRecognition/OR_about.html");
+                    "app.ARNavigation.MainNavigation");
+                intent.putExtra("ABOUT_TEXT", "ARNavigation/ARNavigation.html");
                 break;
             case 5:
                 intent.putExtra("ACTIVITY_TO_LAUNCH",

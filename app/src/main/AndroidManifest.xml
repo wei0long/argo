@@ -177,7 +177,7 @@
         </activity>
          
         <activity
-            android:name=".app.ObjectRecognition.ObjectTargets"
+            android:name=".app.ARNavigation.MainNavigation"
             android:configChanges="orientation|keyboardHidden|screenSize|smallestScreenSize"
         	android:theme="@style/SampleAppsTheme"
  	        android:launchMode="singleTask"
