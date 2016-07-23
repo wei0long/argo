@@ -1,9 +1,7 @@
 package com.vuforia.samples.VuforiaSamples.app.ARNavigation;
 
-import android.Manifest;
 import android.app.Activity;
 import android.content.Context;
-import android.content.pm.PackageManager;
 import android.graphics.ImageFormat;
 import android.graphics.SurfaceTexture;
 import android.hardware.camera2.CameraAccessException;
@@ -15,10 +13,8 @@ import android.hardware.camera2.CameraMetadata;
 import android.hardware.camera2.CaptureRequest;
 import android.hardware.camera2.TotalCaptureResult;
 import android.hardware.camera2.params.StreamConfigurationMap;
-import android.media.Image;
 import android.media.ImageReader;
 import android.os.Bundle;
-import android.os.Environment;
 import android.os.Handler;
 import android.os.HandlerThread;
 import android.util.Log;
@@ -30,12 +26,6 @@ import android.widget.Toast;
 
 import com.vuforia.samples.VuforiaSamples.R;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.OutputStream;
-import java.nio.ByteBuffer;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -62,17 +52,13 @@ public class MainNavigation extends Activity {
     protected CaptureRequest.Builder captureRequestBuilder;
     private Size imageDimension;
     private ImageReader imageReader;
-    private static final int REQUEST_CAMERA_PERMISSION =300;
     private Handler mBackgroundHandler;
     private HandlerThread mBackgroundThread;
-
-
 
     @Override
     public void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_navigation);
-
         textureView = (TextureView) findViewById(R.id.texture);
         assert textureView != null;
         textureView.setSurfaceTextureListener(textureListener);
@@ -101,7 +87,6 @@ public class MainNavigation extends Activity {
         @Override
 //        摄像头打开激发该方法
         public void onOpened(CameraDevice camera) {
-
             Log.e(TAG, "onOpened");
             cameraDevice = camera;
 //            开始预览
@@ -150,17 +135,16 @@ public class MainNavigation extends Activity {
             CameraCharacteristics characteristics = manager.getCameraCharacteristics(cameraDevice.getId());
 
 //            定义图像尺寸
-            Size[] jpegSizes = null;
-            if (characteristics != null) {
+            Size[] jpegSizes;
 //                获取摄像头支持的最大尺寸
-                jpegSizes = characteristics.get(CameraCharacteristics.SCALER_STREAM_CONFIGURATION_MAP).getOutputSizes(ImageFormat.JPEG);
-            }
-            int width = 640;
-            int height = 480;
-            if (jpegSizes != null && 0 < jpegSizes.length) {
-                width = jpegSizes[0].getWidth();
-                height = jpegSizes[0].getHeight();
-            }
+            jpegSizes = characteristics.get(CameraCharacteristics.SCALER_STREAM_CONFIGURATION_MAP).getOutputSizes(ImageFormat.JPEG);
+////            初始化一个尺寸
+//            int width = 640;
+//            int height = 480;
+
+            int width = jpegSizes[0].getWidth();
+            int height = jpegSizes[0].getHeight();
+
 //            创建一个ImageReader对象，用于获得摄像头的图像数据
             ImageReader reader = ImageReader.newInstance(width, height, ImageFormat.JPEG, 1);
 //动态数组
@@ -181,51 +165,14 @@ public class MainNavigation extends Activity {
             int rotation = getWindowManager().getDefaultDisplay().getRotation();
 //            根据设置方向设置照片显示的方向
             captureBuilder.set(CaptureRequest.JPEG_ORIENTATION, ORIENTATIONS.get(rotation));
-//            设置图片的存储位置
-            final File file = new File(Environment.getExternalStorageDirectory()+"/pic.jpg");
-//ImageReader监听函数
-            ImageReader.OnImageAvailableListener readerListener = new ImageReader.OnImageAvailableListener() {
-                @Override
-                public void onImageAvailable(ImageReader reader) {
-                    Image image = null;
-//                    读取图像并保存
-                    try {
-                        image = reader.acquireLatestImage();
-                        ByteBuffer buffer = image.getPlanes()[0].getBuffer();
-                        byte[] bytes = new byte[buffer.capacity()];
-                        buffer.get(bytes);
-                        save(bytes);
-                    } catch (FileNotFoundException e) {
-                        e.printStackTrace();
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    } finally {
-                        if (image != null) {
-                            image.close();
-                        }
-                    }
-                }
-                private void save(byte[] bytes) throws IOException {
-                    OutputStream output = null;
-                    try {
-                        output = new FileOutputStream(file);
-                        output.write(bytes);
-                    } finally {
-                        if (null != output) {
-                            output.close();
-                        }
-                    }
-                }
-            };
 
-            reader.setOnImageAvailableListener(readerListener, mBackgroundHandler);
+//            reader.setOnImageAvailableListener(readerListener, mBackgroundHandler);
             //拍照开始或是完成时调用，用来监听CameraCaptureSession的创建过程
             final CameraCaptureSession.CaptureCallback captureListener = new CameraCaptureSession.CaptureCallback() {
                 @Override
-//                拍照完成后提示图片的保存位置
                 public void onCaptureCompleted(CameraCaptureSession session, CaptureRequest request, TotalCaptureResult result) {
                     super.onCaptureCompleted(session, request, result);
-                    Toast.makeText(MainNavigation.this, "Saved:" + file, Toast.LENGTH_SHORT).show();
+//                    Toast.makeText(MainNavigation.this, "Saved:" + file, Toast.LENGTH_SHORT).show();
                     createCameraPreview();
                 }
             };
@@ -247,7 +194,6 @@ public class MainNavigation extends Activity {
             e.printStackTrace();
         }
     }
-
     protected void createCameraPreview() {
         try {
             SurfaceTexture texture = textureView.getSurfaceTexture();
@@ -308,7 +254,6 @@ public class MainNavigation extends Activity {
 //        设置模式为自动
         captureRequestBuilder.set(CaptureRequest.CONTROL_MODE, CameraMetadata.CONTROL_MODE_AUTO);
         try {
-
             cameraCaptureSessions.setRepeatingRequest(captureRequestBuilder.build(), null, mBackgroundHandler);
         } catch (CameraAccessException e) {
             e.printStackTrace();
@@ -324,17 +269,6 @@ public class MainNavigation extends Activity {
             imageReader = null;
         }
     }
-    //    如果没有相应的权限测关闭APP
-//    @Override
-//    public void onRequestPermissionsResult(int requestCode, String[] permissions,int[] grantResults) {
-//        if (requestCode == REQUEST_CAMERA_PERMISSION) {
-//            if (grantResults[0] == PackageManager.PERMISSION_DENIED) {
-//                // close the app
-//                Toast.makeText(MainNavigation.this, "Sorry!!!, you can't use this app without granting permission", Toast.LENGTH_LONG).show();
-//                finish();
-//            }
-//        }
-//    }
     @Override
     protected void onResume() {
         super.onResume();
@@ -355,6 +289,4 @@ public class MainNavigation extends Activity {
         stopBackgroundThread();
         super.onPause();
     }
-
-
 }
