@@ -5,8 +5,13 @@ def NATIVE_LIB_DIR = 'ARGO/app/src/libs/lib'
 def JAR_DIR = 'ARGO/app/src/libs/java/vuforia'
 
 android {
+<<<<<<< HEAD
     compileSdkVersion 23
     buildToolsVersion '22.0.1'
+=======
+    compileSdkVersion 22
+    buildToolsVersion "22.0.1"
+>>>>>>> 9ea4b1651a5a528ce700316c59536232968e636d
 
     sourceSets.main {
         jni.srcDirs = []
@@ -41,5 +46,9 @@ android {
 }
 
 dependencies {
+<<<<<<< HEAD
     compile files('src/libs/java/vuforia/Vuforia.jar')
+=======
+    compile files("$VUFORIA_SDK_DIR/$JAR_DIR/Vuforia.jar")
+>>>>>>> 9ea4b1651a5a528ce700316c59536232968e636d
 }
