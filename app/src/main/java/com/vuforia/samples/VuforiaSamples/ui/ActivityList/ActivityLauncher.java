@@ -61,8 +61,13 @@ public class ActivityLauncher extends ListActivity
                 break;
             case 1:
                 intent.putExtra("ACTIVITY_TO_LAUNCH",
+<<<<<<< HEAD
+                    "app.youxiwang.ActivityBuffer");
+                intent.putExtra("ABOUT_TEXT", "Yu_Gi_Oh/ARYu_Gi_Oh.html");
+=======
                     "app.CylinderTargets.CylinderTargets");
                 intent.putExtra("ABOUT_TEXT", "CylinderTargets/CY_about.html");
+>>>>>>> 9ea4b1651a5a528ce700316c59536232968e636d
                 break;
             case 2:
                 intent.putExtra("ACTIVITY_TO_LAUNCH",
