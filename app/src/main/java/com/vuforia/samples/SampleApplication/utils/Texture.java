@@ -43,15 +43,35 @@ public class Texture
         try
         {
             inputStream = assets.open(fileName, AssetManager.ACCESS_BUFFER);
+<<<<<<< HEAD
+=======
             
+>>>>>>> 9ea4b1651a5a528ce700316c59536232968e636d
             BufferedInputStream bufferedStream = new BufferedInputStream(
                 inputStream);
             Bitmap bitMap = BitmapFactory.decodeStream(bufferedStream);
             
             int[] data = new int[bitMap.getWidth() * bitMap.getHeight()];
+<<<<<<< HEAD
+            //DATA的長度爲像素點衚的個數
+                       bitMap.getPixels(data, 0, bitMap.getWidth(), 0, 0,
+                bitMap.getWidth(), bitMap.getHeight());
+          //  public void getPixels(int[] pixels, int offset, int stride,int x, int y, int width, int height)
+/*
+            获取原Bitmap的像素值存储到pixels数组中。
+            参数：
+            pixels     接收位图颜色值的数组
+            offset     写入到pixels[]中的第一个像素索引值
+            stride     pixels[]中的行间距个数值(必须大于等于位图宽度)。不能为负数
+            x          从位图中读取的第一个像素的x坐标值。
+            y          从位图中读取的第一个像素的y坐标值
+            width      从每一行中读取的像素宽度
+            height 读取的行数*/
+=======
             bitMap.getPixels(data, 0, bitMap.getWidth(), 0, 0,
                 bitMap.getWidth(), bitMap.getHeight());
             
+>>>>>>> 9ea4b1651a5a528ce700316c59536232968e636d
             return loadTextureFromIntBuffer(data, bitMap.getWidth(),
                 bitMap.getHeight());
         } catch (IOException e)
@@ -69,7 +89,10 @@ public class Texture
         // Convert:
         int numPixels = width * height;
         byte[] dataBytes = new byte[numPixels * 4];
+<<<<<<< HEAD
+=======
         
+>>>>>>> 9ea4b1651a5a528ce700316c59536232968e636d
         for (int p = 0; p < numPixels; ++p)
         {
             int colour = data[p];
@@ -88,9 +111,15 @@ public class Texture
             ByteOrder.nativeOrder());
         int rowSize = texture.mWidth * texture.mChannels;
         for (int r = 0; r < texture.mHeight; r++)
+<<<<<<< HEAD
+        texture.mData.put(dataBytes, rowSize * (texture.mHeight - 1 - r),
+                rowSize);
+
+=======
             texture.mData.put(dataBytes, rowSize * (texture.mHeight - 1 - r),
                 rowSize);
         
+>>>>>>> 9ea4b1651a5a528ce700316c59536232968e636d
         texture.mData.rewind();
         
         // Cleans variables
