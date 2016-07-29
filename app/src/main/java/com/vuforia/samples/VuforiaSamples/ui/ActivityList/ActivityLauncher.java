@@ -23,7 +23,7 @@ import com.vuforia.samples.VuforiaSamples.R;
 
 
 // This activity starts activities which demonstrate the Vuforia features
-public class ActivityLauncher extends ListActivity
+public class  ActivityLauncher extends ListActivity
 {
     
     private String mActivities[] = { "AR识图","游戏王","AR购物","AR游戏","AR导航","AR餐饮","AR交流","AR云识","AR测试"};
@@ -59,10 +59,12 @@ public class ActivityLauncher extends ListActivity
                     "app.ImageTargets.ImageTargets");
                 intent.putExtra("ABOUT_TEXT", "ImageTargets/IT_about.html");
                 break;
+
+            //游戏王
             case 1:
                 intent.putExtra("ACTIVITY_TO_LAUNCH",
-                    "app.CylinderTargets.CylinderTargets");
-                intent.putExtra("ABOUT_TEXT", "CylinderTargets/CY_about.html");
+                    "app.youxiwang.ActivityPrepare");
+                intent.putExtra("ABOUT_TEXT", "Yu_Gi_Oh/ARYu_Gi_Oh.html");
                 break;
             case 2:
                 intent.putExtra("ACTIVITY_TO_LAUNCH",
