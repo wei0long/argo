@@ -112,13 +112,12 @@ public class ImageTargets extends Activity implements SampleApplicationControl,
 
         startLoadingAnimation();
 //        mDatasetStrings.add("StonesAndChips.xml");
-<<<<<<< HEAD
+
 
         mDatasetStrings.add("MagicBUO.xml");
 
-=======
+
         mDatasetStrings.add("bear.xml");
->>>>>>> c5d9b09663db4d92f9a6cbf7612b805921ce3a9e
         mDatasetStrings.add("Tarmac.xml");
 
         vuforiaAppSession
@@ -129,19 +128,18 @@ public class ImageTargets extends Activity implements SampleApplicationControl,
         // Load any sample specific textures:
         mTextures = new Vector<Texture>();
         loadTextures();
-<<<<<<< HEAD
+
 
 
         mIsDroidDevice = android.os.Build.MODEL.toLowerCase().startsWith(
                 "droid");
 //獲取設備相關信息
 
-=======
+
         
         mIsDroidDevice = android.os.Build.MODEL.toLowerCase().startsWith(
             "droid");
-        
->>>>>>> c5d9b09663db4d92f9a6cbf7612b805921ce3a9e
+
     }
     // Process Single Tap event to trigger autofocus
     private class GestureListener extends
@@ -168,15 +166,9 @@ public class ImageTargets extends Activity implements SampleApplicationControl,
                 public void run()
                 {
                     boolean result = CameraDevice.getInstance().setFocusMode(
-<<<<<<< HEAD
+
 
                             CameraDevice.FOCUS_MODE.FOCUS_MODE_TRIGGERAUTO);
-
-
-=======
-                        CameraDevice.FOCUS_MODE.FOCUS_MODE_TRIGGERAUTO);
-                    
->>>>>>> c5d9b09663db4d92f9a6cbf7612b805921ce3a9e
                     if (!result)
                         Log.e("SingleTapUp", "Unable to trigger focus");
                 }
@@ -193,17 +185,16 @@ public class ImageTargets extends Activity implements SampleApplicationControl,
     private void loadTextures()
     {
 
-<<<<<<< HEAD
 
      mTextures.add(Texture.loadTextureFromApk("TextureTeapotBrass.png",
         getAssets()));;
        /* mTextures.add(Texture.loadTextureFromApk("001.jpg",
                 getAssets()));;*/
 
-=======
+
         mTextures.add(Texture.loadTextureFromApk("TextureTeapotBrass.png",
             getAssets()));;
->>>>>>> c5d9b09663db4d92f9a6cbf7612b805921ce3a9e
+
         mTextures.add(Texture.loadTextureFromApk("TextureTeapotBlue.png",
             getAssets()));
         mTextures.add(Texture.loadTextureFromApk("TextureTeapotRed.png",
@@ -239,13 +230,12 @@ public class ImageTargets extends Activity implements SampleApplicationControl,
         // Resume the GL view:
         if (mGlView != null)
         {
-<<<<<<< HEAD
+
 
             mGlView.setVisibility(View.VISIBLE);//可見
 
-=======
             mGlView.setVisibility(View.VISIBLE);
->>>>>>> c5d9b09663db4d92f9a6cbf7612b805921ce3a9e
+
             mGlView.onResume();
         }
         
@@ -683,12 +673,10 @@ public class ImageTargets extends Activity implements SampleApplicationControl,
         mDatasetsNumber = mDatasetStrings.size();
         
 //        group.addRadioItem("Stones & Chips", mStartDatasetsIndex, true);
-<<<<<<< HEAD
 
 
-=======
+
         group.addRadioItem("bear", mStartDatasetsIndex, true);
->>>>>>> c5d9b09663db4d92f9a6cbf7612b805921ce3a9e
         group.addRadioItem("Tarmac", mStartDatasetsIndex + 1, false);
         
         mSampleAppMenu.attachMenu();

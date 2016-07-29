@@ -48,17 +48,7 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
-    
-    <!--
-      NOTE: The setting 'android:launchMode="singleTask"' makes sure
-      that the activity can begin only one task and the device can hold only
-      one instance of the activity at a time. However, it allows other
-      activities to be part of its task (unlike the 'singleInstance' mode).
-      It's at the root of the activity stack, but other activities (necessarily
-      "standard" and "singleTop" activities) can be launched into the same task.
-      If this attribute is not set, the default value 'standard' is used, which
-      would allow the activity to be launched multiple times.
-    -->
+
     <application
         android:icon="@drawable/icon"
         android:label="@string/app_name"
@@ -67,49 +57,23 @@
         android:allowBackup="true"
         android:theme="@style/SampleAppsTheme"
         >
-        
-
-         <!--
-          NOTE: The values in 'android:configChanges' ensure that Android will 
-          not destroy and re-create the activity when the user flips the 
-          keyboard, changes the orientation of the device, or the actual or 
-          physical screen resolution changes, but calls the Activity's 
-          onConfigurationChanged() function instead.
-
-          NOTE 2: In order to prevent automatic reactions to orientation
-          changes in addition to setting proper values for
-          'android:configChanges', you also must explicitly specify the screen
-          orientation used by the application, either by setting the attribute
-          'android:screenOrientation' or in code by calling
-          Activity.setRequestedOrientation().
-        -->
         <!-- Splash Screen Activity -->
          <activity
             android:name=".ui.ActivityList.ActivitySplashScreen"
             android:configChanges="orientation|keyboardHidden|screenSize|smallestScreenSize"
             android:screenOrientation="portrait"
-            android:noHistory="true"
-            >
-<<<<<<< HEAD
-
+            android:noHistory="true">
              <intent-filter>
                  <action android:name="android.intent.action.MAIN" />
-
                  <category android:name="android.intent.category.LAUNCHER" />
              </intent-filter>
-         </activity>
 
-
-
-=======
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
          </activity>
-        
->>>>>>> c5d9b09663db4d92f9a6cbf7612b805921ce3a9e
+
         <activity
             android:name=".ui.ActivityList.ActivityLauncher"
             android:configChanges="orientation|keyboardHidden|screenSize|smallestScreenSize"
@@ -132,10 +96,7 @@
  	        android:launchMode="singleTask"
             >
         </activity>
-<<<<<<< HEAD
 
-=======
->>>>>>> c5d9b09663db4d92f9a6cbf7612b805921ce3a9e
         
         <activity
             android:name=".app.TextRecognition.TextReco"
@@ -200,7 +161,6 @@
  	        android:launchMode="singleTask"
             >
         </activity>
-<<<<<<< HEAD
 
 
         <activity android:name=".app.youxiwang.ActivityPrepare"
@@ -222,8 +182,6 @@
 
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
-                <!-- ATTENTION: This data URL was auto-generated. We recommend that you use the HTTP scheme.
-                  TODO: Change the host or pathPrefix as necessary. -->
                 <data
                     android:host="vuforiasamples.samples.vuforia.com"
                     android:pathPrefix="/activitybuffer"
@@ -234,11 +192,6 @@
         <meta-data
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
-
-
-=======
-         
->>>>>>> c5d9b09663db4d92f9a6cbf7612b805921ce3a9e
     </application>
 
 </manifest>

@@ -63,14 +63,12 @@ public class  ActivityLauncher extends ListActivity
             //游戏王
             case 1:
                 intent.putExtra("ACTIVITY_TO_LAUNCH",
-<<<<<<< HEAD
+
 
                     "app.youxiwang.ActivityPrepare");
                 intent.putExtra("ABOUT_TEXT", "Yu_Gi_Oh/ARYu_Gi_Oh.html");
-=======
-                    "app.CylinderTargets.CylinderTargets");
                 intent.putExtra("ABOUT_TEXT", "CylinderTargets/CY_about.html");
->>>>>>> c5d9b09663db4d92f9a6cbf7612b805921ce3a9e
+
                 break;
             case 2:
                 intent.putExtra("ACTIVITY_TO_LAUNCH",
