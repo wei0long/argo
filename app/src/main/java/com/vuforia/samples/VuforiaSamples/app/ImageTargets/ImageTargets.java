@@ -34,6 +34,9 @@ import android.widget.RelativeLayout;
 import android.widget.Switch;
 import android.widget.Toast;
 
+import com.google.android.gms.appindexing.Action;
+import com.google.android.gms.appindexing.AppIndex;
+import com.google.android.gms.common.api.GoogleApiClient;
 import com.vuforia.CameraDevice;
 import com.vuforia.DataSet;
 import com.vuforia.ObjectTracker;
@@ -101,32 +104,34 @@ public class ImageTargets extends Activity implements SampleApplicationControl,
     // Called when the activity first starts or the user navigates back to an
     // activity.
     @Override
-    protected void onCreate(Bundle savedInstanceState)
-    {
+    protected void onCreate(Bundle savedInstanceState) {
         Log.d(LOGTAG, "onCreate");
         super.onCreate(savedInstanceState);
-        
+
         vuforiaAppSession = new SampleApplicationSession(this);
-        
+
         startLoadingAnimation();
 //        mDatasetStrings.add("StonesAndChips.xml");
-        mDatasetStrings.add("bear.xml");
+
+        mDatasetStrings.add("MagicBUO.xml");
+
         mDatasetStrings.add("Tarmac.xml");
-        
+
         vuforiaAppSession
-            .initAR(this, ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-        
+                .initAR(this, ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+
         mGestureDetector = new GestureDetector(this, new GestureListener());
-        
+
         // Load any sample specific textures:
         mTextures = new Vector<Texture>();
         loadTextures();
-        
+
+
         mIsDroidDevice = android.os.Build.MODEL.toLowerCase().startsWith(
-            "droid");
-        
+                "droid");
+//獲取設備相關信息
+
     }
-    
     // Process Single Tap event to trigger autofocus
     private class GestureListener extends
         GestureDetector.SimpleOnGestureListener
@@ -152,8 +157,10 @@ public class ImageTargets extends Activity implements SampleApplicationControl,
                 public void run()
                 {
                     boolean result = CameraDevice.getInstance().setFocusMode(
-                        CameraDevice.FOCUS_MODE.FOCUS_MODE_TRIGGERAUTO);
-                    
+
+                            CameraDevice.FOCUS_MODE.FOCUS_MODE_TRIGGERAUTO);
+
+
                     if (!result)
                         Log.e("SingleTapUp", "Unable to trigger focus");
                 }
@@ -170,8 +177,12 @@ public class ImageTargets extends Activity implements SampleApplicationControl,
     private void loadTextures()
     {
 
-        mTextures.add(Texture.loadTextureFromApk("TextureTeapotBrass.png",
-            getAssets()));;
+
+     mTextures.add(Texture.loadTextureFromApk("TextureTeapotBrass.png",
+        getAssets()));;
+       /* mTextures.add(Texture.loadTextureFromApk("001.jpg",
+                getAssets()));;*/
+
         mTextures.add(Texture.loadTextureFromApk("TextureTeapotBlue.png",
             getAssets()));
         mTextures.add(Texture.loadTextureFromApk("TextureTeapotRed.png",
@@ -207,7 +218,9 @@ public class ImageTargets extends Activity implements SampleApplicationControl,
         // Resume the GL view:
         if (mGlView != null)
         {
-            mGlView.setVisibility(View.VISIBLE);
+
+            mGlView.setVisibility(View.VISIBLE);//可見
+
             mGlView.onResume();
         }
         
@@ -645,7 +658,8 @@ public class ImageTargets extends Activity implements SampleApplicationControl,
         mDatasetsNumber = mDatasetStrings.size();
         
 //        group.addRadioItem("Stones & Chips", mStartDatasetsIndex, true);
-        group.addRadioItem("bear", mStartDatasetsIndex, true);
+
+
         group.addRadioItem("Tarmac", mStartDatasetsIndex + 1, false);
         
         mSampleAppMenu.attachMenu();
