@@ -90,19 +90,6 @@
             android:screenOrientation="portrait"
             android:noHistory="true"
             >
-<<<<<<< HEAD
-             <intent-filter>
-                 <action android:name="android.intent.action.MAIN" />
-
-                 <category android:name="android.intent.category.LAUNCHER" />
-             </intent-filter>
-         </activity>
-
-
-
-
-
-=======
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -110,7 +97,6 @@
             </intent-filter>
          </activity>
         
->>>>>>> 9ea4b1651a5a528ce700316c59536232968e636d
         <activity
             android:name=".ui.ActivityList.ActivityLauncher"
             android:configChanges="orientation|keyboardHidden|screenSize|smallestScreenSize"
@@ -133,10 +119,6 @@
  	        android:launchMode="singleTask"
             >
         </activity>
-<<<<<<< HEAD
-
-=======
->>>>>>> 9ea4b1651a5a528ce700316c59536232968e636d
         
         <activity
             android:name=".app.TextRecognition.TextReco"
@@ -201,34 +183,7 @@
  	        android:launchMode="singleTask"
             >
         </activity>
-<<<<<<< HEAD
-        <activity
-            android:name=".app.youxiwang.ActivityBuffer"
-            android:configChanges="orientation|keyboardHidden|screenSize|smallestScreenSize"
-            android:screenOrientation="landscape"
-            android:noHistory="true"
-            android:theme="@android:style/Theme.NoTitleBar.Fullscreen"
-            >
-
-            <!-- ATTENTION: This intent was auto-generated. Follow instructions at
-      https://g.co/AppIndexing/AndroidStudio to publish your URLs. -->
-            <intent-filter>
-                <action android:name="android.intent.action.VIEW" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-                <category android:name="android.intent.category.BROWSABLE" />
-                <!-- ATTENTION: This data URL was auto-generated. We recommend that you use the HTTP scheme.
-                  TODO: Change the host or pathPrefix as necessary. -->
-                <data
-                    android:host="vuforiasamples.samples.vuforia.com"
-                    android:pathPrefix="/activitybuffer"
-                    android:scheme="http" />
-            </intent-filter>
-        </activity>
-
-=======
          
->>>>>>> 9ea4b1651a5a528ce700316c59536232968e636d
     </application>
 
 </manifest>
