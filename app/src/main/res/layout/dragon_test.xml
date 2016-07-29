@@ -14,11 +14,15 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Button"
+<<<<<<< HEAD
 
         android:textSize="32sp"
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 
+=======
+        android:textSize="32sp"/>
+>>>>>>> c5d9b09663db4d92f9a6cbf7612b805921ce3a9e
 
 </RelativeLayout>

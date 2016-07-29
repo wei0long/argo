@@ -58,12 +58,16 @@ public class SampleApplicationGLView extends GLSurfaceView
         {
             this.getHolder().setFormat(PixelFormat.TRANSLUCENT);
         }
+<<<<<<< HEAD
 
        /* GLSurfaceView默认会创建像素格式为PixelFormat.RGB_565的surface。
         如果需要透明效果，调用 getHolder().setFormat(PixelFormat.TRANSLUCENT)。
         透明(TRANSLUCENT)的surface的像素格式都是32位，每个色彩单元都是8位深度，像素格式是设备相关的，
         这意味着它可能是ARGB、RGBA或其它。*/
 
+=======
+        
+>>>>>>> c5d9b09663db4d92f9a6cbf7612b805921ce3a9e
         // Setup the context factory for 2.0 rendering
         setEGLContextFactory(new ContextFactory());
         

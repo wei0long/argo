@@ -43,12 +43,17 @@ public class Texture
         try
         {
             inputStream = assets.open(fileName, AssetManager.ACCESS_BUFFER);
+<<<<<<< HEAD
 
+=======
+            
+>>>>>>> c5d9b09663db4d92f9a6cbf7612b805921ce3a9e
             BufferedInputStream bufferedStream = new BufferedInputStream(
                 inputStream);
             Bitmap bitMap = BitmapFactory.decodeStream(bufferedStream);
             
             int[] data = new int[bitMap.getWidth() * bitMap.getHeight()];
+<<<<<<< HEAD
 
             //DATA的長度爲像素點衚的個數
                        bitMap.getPixels(data, 0, bitMap.getWidth(), 0, 0,
@@ -65,6 +70,11 @@ public class Texture
             width      从每一行中读取的像素宽度
             height 读取的行数*/
 
+=======
+            bitMap.getPixels(data, 0, bitMap.getWidth(), 0, 0,
+                bitMap.getWidth(), bitMap.getHeight());
+            
+>>>>>>> c5d9b09663db4d92f9a6cbf7612b805921ce3a9e
             return loadTextureFromIntBuffer(data, bitMap.getWidth(),
                 bitMap.getHeight());
         } catch (IOException e)
@@ -82,7 +92,11 @@ public class Texture
         // Convert:
         int numPixels = width * height;
         byte[] dataBytes = new byte[numPixels * 4];
+<<<<<<< HEAD
 
+=======
+        
+>>>>>>> c5d9b09663db4d92f9a6cbf7612b805921ce3a9e
         for (int p = 0; p < numPixels; ++p)
         {
             int colour = data[p];
@@ -101,11 +115,17 @@ public class Texture
             ByteOrder.nativeOrder());
         int rowSize = texture.mWidth * texture.mChannels;
         for (int r = 0; r < texture.mHeight; r++)
+<<<<<<< HEAD
 
         texture.mData.put(dataBytes, rowSize * (texture.mHeight - 1 - r),
                 rowSize);
 
 
+=======
+            texture.mData.put(dataBytes, rowSize * (texture.mHeight - 1 - r),
+                rowSize);
+        
+>>>>>>> c5d9b09663db4d92f9a6cbf7612b805921ce3a9e
         texture.mData.rewind();
         
         // Cleans variables

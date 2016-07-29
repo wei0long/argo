@@ -90,6 +90,7 @@
             android:screenOrientation="portrait"
             android:noHistory="true"
             >
+<<<<<<< HEAD
 
              <intent-filter>
                  <action android:name="android.intent.action.MAIN" />
@@ -100,6 +101,15 @@
 
 
 
+=======
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+         </activity>
+        
+>>>>>>> c5d9b09663db4d92f9a6cbf7612b805921ce3a9e
         <activity
             android:name=".ui.ActivityList.ActivityLauncher"
             android:configChanges="orientation|keyboardHidden|screenSize|smallestScreenSize"
@@ -122,7 +132,10 @@
  	        android:launchMode="singleTask"
             >
         </activity>
+<<<<<<< HEAD
 
+=======
+>>>>>>> c5d9b09663db4d92f9a6cbf7612b805921ce3a9e
         
         <activity
             android:name=".app.TextRecognition.TextReco"
@@ -187,6 +200,7 @@
  	        android:launchMode="singleTask"
             >
         </activity>
+<<<<<<< HEAD
 
 
         <activity android:name=".app.youxiwang.ActivityPrepare"
@@ -222,6 +236,9 @@
             android:value="@integer/google_play_services_version" />
 
 
+=======
+         
+>>>>>>> c5d9b09663db4d92f9a6cbf7612b805921ce3a9e
     </application>
 
 </manifest>
