@@ -114,7 +114,7 @@ public class ImageTargets extends Activity implements SampleApplicationControl,
 //        mDatasetStrings.add("StonesAndChips.xml");
 
 
-        mDatasetStrings.add("MagicBUO.xml");
+//        mDatasetStrings.add("MagicBUO.xml");
 
 
         mDatasetStrings.add("bear.xml");
@@ -185,20 +185,21 @@ public class ImageTargets extends Activity implements SampleApplicationControl,
     private void loadTextures()
     {
 
-
-     mTextures.add(Texture.loadTextureFromApk("TextureTeapotBrass.png",
-        getAssets()));;
+        mTextures.add(Texture.loadTextureFromApk("banana.jpg",
+                getAssets()));
+//     mTextures.add(Texture.loadTextureFromApk("TextureTeapotBrass.png",
+//        getAssets()));;
        /* mTextures.add(Texture.loadTextureFromApk("001.jpg",
                 getAssets()));;*/
 
 
-        mTextures.add(Texture.loadTextureFromApk("TextureTeapotBrass.png",
-            getAssets()));;
-
-        mTextures.add(Texture.loadTextureFromApk("TextureTeapotBlue.png",
-            getAssets()));
-        mTextures.add(Texture.loadTextureFromApk("TextureTeapotRed.png",
-            getAssets()));
+//        mTextures.add(Texture.loadTextureFromApk("TextureTeapotBrass.png",
+//            getAssets()));;
+//
+//        mTextures.add(Texture.loadTextureFromApk("TextureTeapotBlue.png",
+//            getAssets()));
+//        mTextures.add(Texture.loadTextureFromApk("TextureTeapotRed.png",
+//            getAssets()));
         mTextures.add(Texture.loadTextureFromApk("ImageTargets/Buildings.jpeg",
                 getAssets()));
 
