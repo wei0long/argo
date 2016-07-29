@@ -5,9 +5,9 @@ def NATIVE_LIB_DIR = 'ARGO/app/src/libs/lib'
 def JAR_DIR = 'ARGO/app/src/libs/java/vuforia'
 
 android {
-    compileSdkVersion 22
-    buildToolsVersion "22.0.1"
 
+    compileSdkVersion 23
+    buildToolsVersion '22.0.1'
     sourceSets.main {
         jni.srcDirs = []
         jniLibs.srcDir "$VUFORIA_SDK_DIR/$NATIVE_LIB_DIR/"
@@ -15,7 +15,7 @@ android {
 
     defaultConfig {
         applicationId "com.vuforia.samples.VuforiaSamples"
-        minSdkVersion 8
+        minSdkVersion 9
         targetSdkVersion 22
         versionCode 200
         versionName "5.0"
@@ -41,5 +41,8 @@ android {
 }
 
 dependencies {
-    compile files("$VUFORIA_SDK_DIR/$JAR_DIR/Vuforia.jar")
+
+    compile files('src/libs/java/vuforia/Vuforia.jar')
+
+    compile 'com.google.android.gms:play-services-appindexing:8.1.0'
 }

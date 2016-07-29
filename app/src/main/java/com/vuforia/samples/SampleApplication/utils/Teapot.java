@@ -33,6 +33,8 @@ public class Teapot extends MeshObject
     }
     
     
+
+
     private void setVerts()
     {
         double[] TEAPOT_VERTS = { 11.222200, 0.110300, 20.030291, 10.302300,
@@ -1455,6 +1457,7 @@ public class Teapot extends MeshObject
         mIndBuff = fillBuffer(TEAPOT_INDICES);
         indicesNumber = TEAPOT_INDICES.length;
     }
+
     
     
     public int getNumObjectIndex()
