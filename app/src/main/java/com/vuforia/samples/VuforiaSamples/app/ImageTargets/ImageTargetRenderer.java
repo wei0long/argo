@@ -205,11 +205,7 @@ public class ImageTargetRenderer implements GLSurfaceView.Renderer
             float[] modelViewMatrix = modelViewMatrix_Vuforia.getData();
             
 //            int textureIndex = trackable.getName().equalsIgnoreCase("stones") ? 0: 1;
-<<<<<<< HEAD
-            int textureIndex = trackable.getName().equalsIgnoreCase("MagicBUO") ? 0
-=======
             int textureIndex = trackable.getName().equalsIgnoreCase("bear") ? 0
->>>>>>> 9ea4b1651a5a528ce700316c59536232968e636d
                     : 1;
             textureIndex = trackable.getName().equalsIgnoreCase("tarmac") ? 2
                 : textureIndex;
@@ -242,13 +238,8 @@ public class ImageTargetRenderer implements GLSurfaceView.Renderer
                     false, 0, mTeapot.getVertices());
                 GLES20.glVertexAttribPointer(normalHandle, 3, GLES20.GL_FLOAT,
                     false, 0, mTeapot.getNormals());
-<<<<<<< HEAD
-               GLES20.glVertexAttribPointer(textureCoordHandle, 2,
-                   GLES20.GL_FLOAT, false, 0, mTeapot.getTexCoords());
-=======
                 GLES20.glVertexAttribPointer(textureCoordHandle, 2,
                     GLES20.GL_FLOAT, false, 0, mTeapot.getTexCoords());
->>>>>>> 9ea4b1651a5a528ce700316c59536232968e636d
                 
                 GLES20.glEnableVertexAttribArray(vertexHandle);
                 GLES20.glEnableVertexAttribArray(normalHandle);
