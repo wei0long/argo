@@ -11,26 +11,24 @@ import java.nio.Buffer;
 /**
  * This file created by dragon on 2016/7/29 21:58,belong to com.vuforia.samples.SampleApplication.utils .
  */
-public class Banana extends MeshObject {
+public class model extends MeshObject {
     private  static final String TAG="modelTest";
 
     private Buffer mVertBuff;//顶点
     private Buffer mTexCoordBuff;//纹理坐标
     private Buffer mNormBuff;//normal
-    private Buffer mIndBuff;
-    private int indicesNumber = 0;
     private int verticesNumber = 0;
     private AssetManager assetManager;
 
-    public Banana(AssetManager inputassetManager){
+    public model(AssetManager inputassetManager){
         this.assetManager = inputassetManager;
         setVerts();
         setTexCoords();
         setNorms();
     }
-    double[] banana_VERTS;
-    double[] banana_TEX_COORDS;
-    double[] banana_NORMS;
+    double[] model_VERTS;
+    double[] model_TEX_COORDS;
+    double[] model_NORMS;
 
     InputStream inputFile = null;
 
@@ -40,7 +38,7 @@ public class Banana extends MeshObject {
             BufferedReader reader = new BufferedReader(new InputStreamReader(inputFile));
             String line = reader.readLine();
             int floatsToRead = Integer.parseInt(line);
-            banana_VERTS = new double[3*floatsToRead];
+            model_VERTS = new double[3*floatsToRead];
             for(int i=0;i<floatsToRead;i++){
                 String curline = reader.readLine();
                 if(curline.indexOf('/')>=0){
@@ -49,9 +47,9 @@ public class Banana extends MeshObject {
                 }
 //                将一行分成3个数据
                 String floatStrs[] = curline.split(",");
-                banana_VERTS[3 * i] = Float.parseFloat(floatStrs[0]);
-                banana_VERTS[3 * i + 1] = Float.parseFloat(floatStrs[1]);
-                banana_VERTS[3 * i + 2] = Float.parseFloat(floatStrs[2]);
+                model_VERTS[3 * i] = Float.parseFloat(floatStrs[0]);
+                model_VERTS[3 * i + 1] = Float.parseFloat(floatStrs[1]);
+                model_VERTS[3 * i + 2] = Float.parseFloat(floatStrs[2]);
 
             }
             return floatsToRead;
@@ -77,7 +75,7 @@ public class Banana extends MeshObject {
             int floatsToRead = Integer.parseInt(line);
             //int floatsToRead = 1000;
 
-            banana_TEX_COORDS = new double[2*floatsToRead];
+            model_TEX_COORDS = new double[2*floatsToRead];
 
 
             for (int i = 0; i < floatsToRead; i++)
@@ -92,9 +90,9 @@ public class Banana extends MeshObject {
                 //split 1 line to 2 data
                 String floatStrs[] = curline.split(",");
 
-                banana_TEX_COORDS[2*i] = Float.parseFloat(floatStrs[0]);
-                banana_TEX_COORDS[2*i+1] = Float.parseFloat(floatStrs[1]);
-//                banana_TEX_COORDS[3*i+2] = Float.parseFloat(floatStrs[2]);
+                model_TEX_COORDS[2*i] = Float.parseFloat(floatStrs[0]);
+                model_TEX_COORDS[2*i+1] = Float.parseFloat(floatStrs[1]);
+//                model_TEX_COORDS[3*i+2] = Float.parseFloat(floatStrs[2]);
             }
 
             return floatsToRead;
@@ -123,7 +121,7 @@ public class Banana extends MeshObject {
             int floatsToRead = Integer.parseInt(line);
             //int floatsToRead = 1000;
 
-            banana_NORMS = new double[3*floatsToRead];
+            model_NORMS = new double[3*floatsToRead];
 
 
             for (int i = 0; i < floatsToRead; i++)
@@ -138,9 +136,9 @@ public class Banana extends MeshObject {
                 //split 1 line to 3 data
                 String floatStrs[] = curline.split(",");
 
-                banana_NORMS[3*i] = Float.parseFloat(floatStrs[0]);
-                banana_NORMS[3*i+1] = Float.parseFloat(floatStrs[1]);
-                banana_NORMS[3*i+2] = Float.parseFloat(floatStrs[2]);
+                model_NORMS[3*i] = Float.parseFloat(floatStrs[0]);
+                model_NORMS[3*i+1] = Float.parseFloat(floatStrs[1]);
+                model_NORMS[3*i+2] = Float.parseFloat(floatStrs[2]);
             }
 
             return floatsToRead;
@@ -156,35 +154,35 @@ public class Banana extends MeshObject {
     private void setVerts(){
         int num = 0;
         try{
-            num = loadVertsFromModel("ImageTargets/banana/verts.txt");
+            num = loadVertsFromModel("ImageTargets/model/verts.txt");
 
         } catch(IOException e){
             e.printStackTrace();
         }
-        mVertBuff = fillBuffer(banana_VERTS);
+        mVertBuff = fillBuffer(model_VERTS);
         verticesNumber = num;
     }
     private void setTexCoords()
     {
         int num = 0;
         try {
-            num = loadTexCoordsFromModel("ImageTargets/banana/texcoords.txt");
+            num = loadTexCoordsFromModel("ImageTargets/model/texcoords.txt");
         } catch (IOException e) {
             e.printStackTrace();
         }
 
-        mTexCoordBuff = fillBuffer(banana_TEX_COORDS);
+        mTexCoordBuff = fillBuffer(model_TEX_COORDS);
 
     }
     private void setNorms()
     {
         int num = 0;
         try {
-            num = loadNormsFromModel("ImageTargets/banana/norms.txt");
+            num = loadNormsFromModel("ImageTargets/model/norms.txt");
         } catch (IOException e) {
             e.printStackTrace();
         }
-        mNormBuff = fillBuffer(banana_NORMS);
+        mNormBuff = fillBuffer(model_NORMS);
     }
     public int getNumObjectIndex()
     {

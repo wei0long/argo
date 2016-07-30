@@ -34,9 +34,6 @@ import android.widget.RelativeLayout;
 import android.widget.Switch;
 import android.widget.Toast;
 
-import com.google.android.gms.appindexing.Action;
-import com.google.android.gms.appindexing.AppIndex;
-import com.google.android.gms.common.api.GoogleApiClient;
 import com.vuforia.CameraDevice;
 import com.vuforia.DataSet;
 import com.vuforia.ObjectTracker;
@@ -185,7 +182,7 @@ public class ImageTargets extends Activity implements SampleApplicationControl,
     private void loadTextures()
     {
 
-        mTextures.add(Texture.loadTextureFromApk("banana.jpg",
+        mTextures.add(Texture.loadTextureFromApk("model.jpg",
                 getAssets()));
 //     mTextures.add(Texture.loadTextureFromApk("TextureTeapotBrass.png",
 //        getAssets()));;
