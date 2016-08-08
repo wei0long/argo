@@ -9,15 +9,20 @@ countries.
 
 package com.vuforia.samples.VuforiaSamples.app.ImageTargets;
 
+import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.nio.IntBuffer;
 import java.util.Vector;
 
 import javax.microedition.khronos.egl.EGLConfig;
 import javax.microedition.khronos.opengles.GL10;
 
+import android.graphics.Bitmap;
 import android.opengl.GLES20;
 import android.opengl.GLSurfaceView;
 import android.opengl.Matrix;
+import android.os.Environment;
 import android.util.Log;
 
 import com.vuforia.Matrix44F;
@@ -77,7 +82,9 @@ public class ImageTargetRenderer implements GLSurfaceView.Renderer
     private float  AnimationRZ=0f;
     private float  AnimationFZ=-50f;
     boolean TeapotAppear=false;
-
+    private int mViewWidth = 0;
+    private int mViewHeight = 0;
+    private int picturenum=0;
 
     public ImageTargetRenderer(ImageTargets activity,
                                SampleApplicationSession session)
@@ -97,6 +104,11 @@ public class ImageTargetRenderer implements GLSurfaceView.Renderer
 
         // Call our function to render content
         renderFrame();
+        GLES20.glFinish();
+        if (ImageTargets.ScreenShot==true) {
+            saveScreenShot(0, 0, mViewWidth, mViewHeight, "ImageTarget"+picturenum+".png");
+            ImageTargets.ScreenShot=false;
+        }
     }
 
 
@@ -119,7 +131,8 @@ public class ImageTargetRenderer implements GLSurfaceView.Renderer
     public void onSurfaceChanged(GL10 gl, int width, int height)
     {
         Log.d(LOGTAG, "GLRenderer.onSurfaceChanged");
-
+        mViewWidth = width;
+        mViewHeight = height;
         // Call Vuforia function to handle render surface size changes:
         vuforiaAppSession.onSurfaceChanged(width, height);
     }
@@ -194,7 +207,6 @@ public class ImageTargetRenderer implements GLSurfaceView.Renderer
         texSampler2DHandle = GLES20.glGetUniformLocation(shaderProgramID,
                 "texSampler2D");//uniform sampler2D texSampler2D
        /* SampleUtils.checkGLError("");*/
-        initRenderingTeapot();
         try
         {
             mBuildingsModel = new SampleApplication3DModel();
@@ -584,5 +596,53 @@ public class ImageTargetRenderer implements GLSurfaceView.Renderer
 
     }
 
-    public void initRenderingTeapot(){}
+    private void saveScreenShot(int x, int y, int w, int h, String filename) {
+        Bitmap bmp = grabPixels(x, y, w, h);
+        try {
+            String contentpath = Environment.getExternalStorageDirectory() + "/" +"ARGO";
+            Log.i(LOGTAG,"path="+contentpath);
+            File contentfile = new File(contentpath);
+            if (!contentfile.exists()||!contentfile.isDirectory()){
+                   try{
+                       contentfile.mkdir();
+                       Log.i(LOGTAG, "make dir");
+                   }catch (Exception e) {
+                       Log.e(LOGTAG, "MakeDirException"+e.toString());
+                   }
+            }else{
+                Log.i(LOGTAG,"目录已经存在");
+            }
+            String picturepath=contentpath+"/"+filename;
+            Log.i(LOGTAG,"picturepath="+picturepath);
+            File picturefile = new File(picturepath);
+            picturefile.createNewFile();
+            FileOutputStream fos = new FileOutputStream(picturefile);
+            bmp.compress(Bitmap.CompressFormat.PNG, 100, fos);
+            fos.flush();
+            fos.close();
+            picturenum++;
+        } catch (Exception e) {
+            Log.i(LOGTAG,e.getStackTrace().toString());
+            Log.i(LOGTAG,"Exception"+e.toString());
+        }
+    }
+    private Bitmap grabPixels(int x, int y, int w, int h) {
+        int b[] = new int[w * (y + h)];
+        int bt[] = new int[w * h];
+        IntBuffer ib = IntBuffer.wrap(b);
+        ib.position(0);
+        GLES20.glReadPixels(x, 0, w, y + h,
+                GLES20.GL_RGBA, GLES20.GL_UNSIGNED_BYTE, ib);
+        for (int i = 0, k = 0; i < h; i++, k++) {
+            for (int j = 0; j < w; j++) {
+                int pix = b[i * w + j];
+                int pb = (pix >> 16) & 0xff;
+                int pr = (pix << 16) & 0x00ff0000;
+                int pix1 = (pix & 0xff00ff00) | pr | pb;
+                bt[(h - k - 1) * w + j] = pix1;
+            }
+        }
+        Bitmap sb = Bitmap.createBitmap(bt, w, h, Bitmap.Config.ARGB_8888);
+        return sb;
+    }
 }

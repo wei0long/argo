@@ -15,6 +15,7 @@ import java.util.Vector;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
@@ -29,7 +30,9 @@ import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup.LayoutParams;
+import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.ImageButton;
 import android.widget.RelativeLayout;
 import android.widget.Switch;
 import android.widget.Toast;
@@ -96,8 +99,8 @@ public class ImageTargets extends Activity implements SampleApplicationControl,
     private AlertDialog mErrorDialog;
     
     boolean mIsDroidDevice = false;
-    
-    
+    public static boolean ScreenShot=false;
+    ImageButton imageButton;
     // Called when the activity first starts or the user navigates back to an
     // activity.
     @Override
@@ -109,33 +112,42 @@ public class ImageTargets extends Activity implements SampleApplicationControl,
 
         startLoadingAnimation();
 //        mDatasetStrings.add("StonesAndChips.xml");
-
-
 //        mDatasetStrings.add("MagicBUO.xml");
-
-
         mDatasetStrings.add("bear.xml");
         mDatasetStrings.add("Tarmac.xml");
-
         vuforiaAppSession
                 .initAR(this, ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-
         mGestureDetector = new GestureDetector(this, new GestureListener());
 
         // Load any sample specific textures:
         mTextures = new Vector<Texture>();
         loadTextures();
 
-
-
         mIsDroidDevice = android.os.Build.MODEL.toLowerCase().startsWith(
                 "droid");
 //獲取設備相關信息
-
-
-        
         mIsDroidDevice = android.os.Build.MODEL.toLowerCase().startsWith(
             "droid");
+        imageButton = (ImageButton)findViewById(R.id.imageButton);
+        imageButton.setOnClickListener(new Button.OnClickListener(){
+            public void onClick(View v) {
+                //对话框   Builder是AlertDialog的静态内部类
+                Dialog dialog = new AlertDialog.Builder(ImageTargets.this)
+                        //设置对话框的标题
+                        .setTitle("ImageTarget")
+                        //设置对话框要显示的消息
+                        .setMessage("ARGO ScreenShot")
+                        //给对话框来个按钮 叫“确定定” ，并且设置监听器 这种写法也真是有些BT
+                        .setPositiveButton("确定", new DialogInterface.OnClickListener(){
+
+                            public void onClick(DialogInterface dialog, int which) {
+                                //点击 "确定定" 按钮之后要执行的操作就写在这里
+                                ScreenShot=true;
+                            }
+                        }).create();//创建按钮
+                dialog.show();//显示一把
+            }
+        });
 
     }
     // Process Single Tap event to trigger autofocus
@@ -330,7 +342,7 @@ public class ImageTargets extends Activity implements SampleApplicationControl,
     
     private void startLoadingAnimation()
     {
-        mUILayout = (RelativeLayout) View.inflate(this, R.layout.camera_overlay,
+        mUILayout = (RelativeLayout) View.inflate(this, R.layout.camera_store,
             null);
         
         mUILayout.setVisibility(View.VISIBLE);
